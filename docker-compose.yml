@@ -1,0 +1,16 @@
+version: "3.2"
+services:
+    proxy:
+        build: ./nginx-proxy/
+        ports:
+            - "80:80"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro     
+    foo:
+        image: jwilder/whoami
+        environment:
+            - VIRTUAL_HOST=foo.mydomain.com
+    bar:
+        image: jwilder/whoami
+        environment:
+            - VIRTUAL_HOST=bar.mydomain.com 
